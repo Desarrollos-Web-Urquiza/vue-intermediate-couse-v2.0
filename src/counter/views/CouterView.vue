@@ -1,11 +1,35 @@
 <script setup lang="ts">
 
+import { defineComponent, ref } from 'vue';
+
+const counter = ref(5);
+
+const increase = () => {
+    counter.value++
+};
+
+// export default defineComponent({
+//     setup(){ 
+
+//         const counter = ref(5);
+
+//         const increase = () => {
+//             counter.value++
+//         };
+       
+//         return   {  
+//             counter,
+//             increase
+//         } 
+//     }
+// })
+
+
 </script>
 
-template
 
 <template>
-    <h1>Counter View: 10</h1>
-    <button>+1</button>
+    <h1>Counter View: {{counter}}</h1>
+    <button @click="increase">+1</button>
 
 </template>
