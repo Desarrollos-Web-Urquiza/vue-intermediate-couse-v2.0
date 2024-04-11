@@ -2,12 +2,19 @@
 // import HelloWorld from './components/HelloWorld.vue'
   import { RouterLink, RouterView } from 'vue-router';
   import NavBar from './shared/views/components/NavBar.vue';
+  import { routerLinks } from "@/router/list-routes.ts"
+
 </script>
 
 <template>
   <div>
     <div>
-      <NavBar title="PokemonApp" />
+      <NavBar 
+        title="PokemonApp" 
+        :links="routerLinks"
+
+      />
+      <!-- links -->
     </div>
     <!-- <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />

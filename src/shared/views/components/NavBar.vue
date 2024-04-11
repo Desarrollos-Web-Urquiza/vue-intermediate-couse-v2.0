@@ -1,25 +1,36 @@
-<script setup lang="ts" >
+<script setup lang="ts">
+
+import type { RouterLinks } from "@/router/list-routes"
 
 interface Props {
   title?: string;
+  links: RouterLinks[];
 }
 
  withDefaults(defineProps<Props>(), {
     title: 'CompoApp'
  });
 
+//  onMounted(() => {
+  // console.log('RouterLinks', RouterLink);
+  // });
+  // console.log('hola');
+  
+  
 </script>
-
 
 <template>
   <nav>
     <img src="/vite.svg" class="logo" alt="Vite logo" />
     <!-- <span v-if="$props.title">{{ $props.title }}</span> -->
     <span>{{ $props.title }}</span>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-    <RouterLink to="/counter"> Counter</RouterLink>
-
+    <RouterLink 
+      v-for="link of $props.links" 
+      :key="link.path"
+      :to="link.path"
+    >
+      {{ link.title }}
+    </RouterLink>
   </nav>
 
 </template>
