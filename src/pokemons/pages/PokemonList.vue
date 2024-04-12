@@ -1,4 +1,4 @@
-<script lang="ts" src="./CounterView.ts">
+<script lang="ts">
 
 
 </script>
