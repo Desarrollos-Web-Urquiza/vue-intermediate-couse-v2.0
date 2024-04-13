@@ -5,25 +5,23 @@ import type { RouterLinks } from "@/router/list-routes"
 interface Props {
   title?: string;
   links: RouterLinks[];
+  isSecondary?: boolean;
 }
 
  withDefaults(defineProps<Props>(), {
-    title: 'CompoApp'
+    title: 'CompoApp',
+    isSecondary: false
  });
-
-//  onMounted(() => {
-  // console.log('RouterLinks', RouterLink);
-  // });
-  // console.log('hola');
-  
   
 </script>
 
 <template>
   <nav>
-    <img src="/vite.svg" class="logo" alt="Vite logo" />
-    <!-- <span v-if="$props.title">{{ $props.title }}</span> -->
-    <span>{{ $props.title }}</span>
+    <template v-if="!$props.isSecondary">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+      <!-- <span v-if="$props.title">{{ $props.title }}</span> -->
+      <span>{{ $props.title }}</span>
+    </template>
     <RouterLink 
       v-for="link of $props.links" 
       :key="link.path"
