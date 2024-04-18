@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { usePokemons } from '../composables/usePokemons';
 
-import  pokemonApi  from '../api/pokemonApi'
-import type { PokemonListResponse }  from '../interfaces/pokemon-list.response'
-import type { Pokemon }  from '../interfaces/pokemon'
-import { sleep }  from '../helpers/sleep'
-
-await sleep(2);
-
-// const data = await pokemonApi.get<PokemonListResponse>('/pokemon?limit=45');
-// const pokemons = ref<Pokemon[]>(data)
-
-// pokemonApi.get<PokemonListResponse>('/pokemon?limit=45')
-//     .then( data => pokemons.value = data );
+const { count, pokemons, isLoading } = usePokemons();
 
 </script>
 
 <template>
-    <h1>Pokemon List</h1>
+
+    <h1>Pokemon List - ({{ count }})</h1>
+
+    <h3 v-if="isLoading">Cargando</h3>
+
     <ul>
-        <li v-for="pokemon in pokemons.data.results" :key="pokemon.id">
+        <li v-for="pokemon in pokemons" :key="pokemon.id">
             {{  pokemon.name }}
         </li>
     </ul>
