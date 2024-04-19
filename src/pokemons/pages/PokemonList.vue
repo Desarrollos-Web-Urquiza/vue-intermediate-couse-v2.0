@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { usePokemons } from '../composables/usePokemons';
+// import { usePokemons } from '../composables/usePokemons';
 
-const { count, pokemons, isLoading } = usePokemons();
+// const { count, pokemons, isLoading } = usePokemons();
+
+useQuery(
+    ['pokemons'],
+    getPokemons 
+)
 
 </script>
 
