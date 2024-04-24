@@ -8,6 +8,10 @@ import './style.css'
 
 const app = createApp(App);
 
+console.log('VueQueryPlugin', VueQueryPlugin);
+
+// const vueQueryPlugin = new VueQueryPlugin();
+
 // app.use(VueQueryPlugin)
 
 VueQueryPlugin.install(app, {

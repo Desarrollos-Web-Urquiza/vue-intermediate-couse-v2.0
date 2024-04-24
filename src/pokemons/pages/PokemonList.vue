@@ -1,12 +1,15 @@
 <script setup lang="ts">
-// import { usePokemons } from '../composables/usePokemons';
+import { useQuery } from "@tanstack/vue-query";
+import { getPokemons } from "../helpers/get-pokemons";
+import { computed, ref }  from 'vue'
 
-// const { count, pokemons, isLoading } = usePokemons();
+const {data, isSuccess, isError } = useQuery({ queryKey: ['pokemons'], queryFn: getPokemons })
 
-useQuery(
-    ['pokemons'],
-    getPokemons 
-)
+const pokemons = ref([]);
+
+if (isSuccess.value) {
+  pokemons.value = data.value;
+}
 
 </script>
 
