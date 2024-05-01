@@ -1,25 +1,22 @@
 <script setup lang="ts">
-import { usePokemons } from "../composables/usePokemons";
-import PokemonCardList  from "../components/PokemonCardList.vue";
-
-const { count, pokemons, isLoading, isError, error } = usePokemons();
-
+import store from '@/store/store'
+import PokemonCardList from '../components/PokemonCardList.vue'
 
 </script>
 
 <template>
 
-    <h1 v-if="isLoading">Loading</h1>
+    <h1 v-if="store.pokemons.isLoading">Loading</h1>
 
-    <div v-else-if="isError">
-        {{ error }}
+    <div v-else-if="store.pokemons.hasError">
+        {{ store.pokemons.errorMessage }}
     </div>
 
     <div v-else>
-        <h1>Pokemon List Native - ({{ count }})</h1>
+        <h1>Pokemon List Native - ({{ store.pokemons.count }})</h1>
     
         <PokemonCardList 
-            :pokemons="pokemons ?? []"
+            :pokemons="store.pokemons.list"
         />
     </div>
 
