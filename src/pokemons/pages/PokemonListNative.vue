@@ -2,6 +2,27 @@
 import store from '@/store/store'
 import PokemonCardList from '../components/PokemonCardList.vue'
 
+import { useQuery } from '@tanstack/vue-query'
+import { getPokemons } from '../helpers/get-pokemons'
+
+useQuery({ 
+    queryKey: ['pokemons'], 
+    queryFn: getPokemons, 
+    select: (data: TData) => {
+        console.log(data);
+        store.loadedPokemons(data);
+    }
+})
+
+// const {data, isSuccess, isError, error, isLoading } = useQuery({ queryKey: ['pokemons'], queryFn: getPokemons })
+
+// const pokemons = ref([]);
+
+// if (isSuccess.value) {
+//     pokemons.value = data.value;
+// }
+
+
 </script>
 
 <template>

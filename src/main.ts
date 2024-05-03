@@ -6,11 +6,9 @@ import router from './router/index.ts';
 
 import './style.css'
 
-import store from '@/store/store';
+import '@/store/store';
 
 const app = createApp(App);
-
-store.startLoadingPokemons();
 
 console.log('VueQueryPlugin', VueQueryPlugin);
 

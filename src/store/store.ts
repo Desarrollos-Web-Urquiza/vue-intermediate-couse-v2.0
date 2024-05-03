@@ -1,5 +1,4 @@
 import { reactive } from 'vue'
-import { getPokemons } from "../pokemons/helpers/get-pokemons";
 
 interface Store {
     //State
@@ -25,8 +24,12 @@ const store = reactive<Store>({
         errorMessage: undefined
     },
     startLoadingPokemons: async function (): Promise<void> {
-        const pokemons = await getPokemons();
-        this.loadedPokemons(pokemons);
+       this.pokemons = {
+            ...this.pokemons,
+            isLoading: true,
+            hasError: false,
+            erroMessage: undefined,
+       }
     },
     loadedPokemons: function (data: Pokemon[]): void {
         this.pokemons = {
@@ -46,5 +49,7 @@ const store = reactive<Store>({
         }
     }
 });
+
+store.startLoadingPokemons();
 
 export default store;
