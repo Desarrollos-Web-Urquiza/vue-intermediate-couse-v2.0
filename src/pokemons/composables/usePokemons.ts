@@ -1,12 +1,20 @@
-import { computed, ref }  from 'vue'
+import { computed, ref, watchEffect }  from 'vue'
 import { useQuery } from "@tanstack/vue-query";
 import { getPokemons } from "../helpers/get-pokemons";
 
 export const usePokemons = () =>    {
 
-    const {data, isSuccess, isError, error, isLoading } = useQuery({ queryKey: ['pokemons'], queryFn: getPokemons })
+    const {data, isSuccess, isError, error, isLoading } = useQuery({ 
+        queryKey: ['pokemons'], 
+        queryFn: getPokemons, 
+        retry: 0
+    })
 
     const pokemons = ref([]);
+
+    watchEffect(() => {
+        // console.log('isError', isError.value);
+    })
 
     if (isSuccess.value) {
         pokemons.value = data.value;
