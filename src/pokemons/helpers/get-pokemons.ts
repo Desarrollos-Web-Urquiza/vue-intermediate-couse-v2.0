@@ -3,10 +3,6 @@ import pokemonApi from '../api/pokemonApi';
 import type { PokemonListResponse, Pokemon, PokemonResponse } from '../interfaces';
 // import { sleep } from './sleep';
 
-
-
-
-
 export const getPokemons = async(): Promise<Pokemon[]> => {
 
   // throw new Error("Error de prueba");
@@ -31,4 +27,11 @@ export const getPokemons = async(): Promise<Pokemon[]> => {
   const pokemons = await Promise.all( pokemonPromises );
 
   return pokemons;
+}
+
+export const getPokemonById = async(id: number): Promise<any> => {
+
+  const { data } = await pokemonApi.get<any>(`/pokemon/${id}`);
+  
+  return Promise.resolve(data);
 }
