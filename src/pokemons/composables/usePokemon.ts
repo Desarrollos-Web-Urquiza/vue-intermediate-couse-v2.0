@@ -6,7 +6,7 @@ import { getPokemonById } from "../helpers/get-pokemons";
 export const usePokemon = (id) =>    {
 
     const {data, isSuccess, isError, error, isLoading } = useQuery({ 
-        queryKey: ['pokemon'], 
+        queryKey: ['pokemon', id], 
         queryFn: () => getPokemonById(id), 
         retry: 0
     })
